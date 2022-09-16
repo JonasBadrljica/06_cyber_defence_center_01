@@ -70,18 +70,24 @@ public class Application implements IApplication {
 
     public void executeQuery02() {
         System.out.println("--- executeQuery02 ---");
-        List<Record> result = recordList.stream()
-                .filter(x -> x.getSeverity().equals("major"))
-                .filter(x -> x.getAttackType().equals("e"))
-                .filter(x -> x.getSource() <= 2)
-                .filter(x->x.getShift() == 4)
-                .collect(Collectors.toList());
-        System.out.println("result: "+ result.size() );
+        long result = recordList.stream()
+                        .filter(x -> x.getSeverity().equals("major"))
+                        .filter(x -> x.getAttackType().equals("e"))
+                        .filter(x -> x.getSource() <= 2)
+                        .filter(x -> x.getShift() == 4)
+                        .count();
+        System.out.println("result : " + result);
     }
 
     public void executeQuery03() {
         System.out.println("--- executeQuery03 ---");
-        System.out.println();
+        long result = recordList.stream()
+                        .filter(x -> x.getSeverity().equals("major") || x.getSeverity().equals("critical"))
+                        .filter(x -> x.getAttackType().equals("b"))
+                        .filter(x -> x.getSource() == 4)
+                        .filter(x -> x.getShift() >= 3)
+                        .count();
+        System.out.println("result : " + result);
     }
 
     public void executeQuery04() {
@@ -112,17 +118,27 @@ public class Application implements IApplication {
 
     public void executeQuery09() {
         System.out.println("--- executeQuery09 ---");
-        System.out.println();
+        Map<String, Long> result = recordList.stream()
+                        .collect(groupingBy(Record::getSeverity, Collectors.counting()));
+        System.out.println("result : " + result);
     }
 
     public void executeQuery10() {
         System.out.println("--- executeQuery10 ---");
-        System.out.println();
+        Map<Integer, Long> result = recordList.stream()
+                        .filter(x -> x.getAttackType().equals("d"))
+                        .filter(x -> x.getSeverity().equals("major"))
+                        .collect(groupingBy(Record::getShift, Collectors.counting()));
+        System.out.println("result : " + result);
     }
 
     public void executeQuery11() {
         System.out.println("--- executeQuery11 ---");
-        System.out.println();
+        Map<String, Long> result= recordList.stream()
+                .filter(x -> x.getAttackType().equals("a") || x.getAttackType().equals("b") || x.getAttackType().equals("c"))
+                .filter(x -> x.getSource() == 3)
+                .collect(groupingBy(Record::getAttackType, Collectors.counting()));
+        System.out.println("result : " + result);
     }
 
     public void executeQuery12() {
