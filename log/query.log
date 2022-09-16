@@ -1,0 +1,76 @@
+--- query 01 (count)
+SELECT COUNT(*) FROM data
+1000000  
+
+--- query 02 (count, where)
+SELECT COUNT(*) FROM data WHERE severity = 'major' AND attackType = 'e' AND source <= 2 AND shift = 4
+5218  
+
+--- query 03 (count, where, in)
+SELECT COUNT(*) FROM data WHERE severity IN ('major','critical') AND attackType = 'b' AND source = 4 AND shift >= 3
+10372  
+
+--- query 04 (count, where, not in)
+SELECT COUNT(*) FROM data WHERE severity = 'critical' AND attackType NOT IN ('b','c','g') AND source > 2 AND shift <= 2
+52192  
+
+--- query 05 (sum, where, in)
+SELECT SUM(downtimeInMinutes) FROM data WHERE severity IN ('major','critical') AND attackType IN ('b','c') AND source > 2 AND shift <= 2
+5096320  
+
+--- query 06 (avg, where, not in)
+SELECT AVG(downtimeInMinutes) FROM data WHERE severity IN ('minor','major') AND attackType NOT IN ('c','d','e') AND source = 2 AND shift = 1
+121  
+
+--- query 07 (id, where, in, order by desc limit)
+SELECT id FROM data WHERE severity = 'minor' AND attackType IN ('a','b') AND source = 1 AND shift = 4 AND downtimeInMinutes >= 195 ORDER BY downtimeInMinutes DESC LIMIT 3
+760432  
+347594  
+79698  
+
+--- query 08 (id, where, in, order by desc, order by asc)
+SELECT id FROM data WHERE severity IN ('minor','major') AND attackType = 'c' AND source = 2 AND shift = 1 AND id <= 500 ORDER BY severity DESC, downtimeInMinutes
+146  
+311  
+149  
+
+--- query 09 (count, group by)
+SELECT severity,COUNT(*) FROM data GROUP BY severity
+major 333799  
+minor 333567  
+critical 332634  
+
+--- query 10 (count, where, group by)
+SELECT shift,COUNT(*) FROM data WHERE attackType = 'd' AND severity = 'major' GROUP BY shift
+1 10398  
+2 10473  
+4 10403  
+3 10432  
+
+--- query 11 (count, where, in, group by)
+SELECT attackType,COUNT(*) FROM data WHERE attackType IN ('a','b','c') AND source = 3 GROUP BY attackType
+c 31239  
+b 31039  
+a 31368  
+
+--- query 12 (count, where, not in, group by)
+SELECT source,COUNT(*) FROM data WHERE attackType NOT IN ('b','d','e') AND shift >= 2 AND downtimeInMinutes >= 30 AND downtimeInMinutes <= 90 GROUP BY source
+3 30384  
+4 30176  
+1 30794  
+2 30426  
+
+--- query 13 (sum, where, not in, in, group by)
+SELECT attackType,SUM(downtimeInMinutes) FROM data WHERE attackType NOT IN ('b','d','e') AND shift = 1 AND source IN (1,3) GROUP BY attackType
+h 1932724  
+f 1941716  
+a 1931434  
+c 1911406  
+g 1919888  
+
+--- query 14 (avg, where, in, in, group by)
+SELECT attackType,AVG(downtimeInMinutes) FROM data WHERE severity IN ('minor','major') AND attackType IN ('a','b','c') AND source = 1 AND shift >= 3 GROUP BY attackType
+b 122  
+c 122  
+a 121  
+

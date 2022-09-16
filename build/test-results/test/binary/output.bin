@@ -1,0 +1,4 @@
+--- query 01 (count)
+SELECT COUNT(*) FROM data
+result : 1000000
+

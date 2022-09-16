@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestApplication" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-16T18:03:18" hostname="DRMUELLER" time="1.388">
+  <properties/>
+  <testcase name="executeSQL01()" classname="TestApplication" time="1.388"/>
+  <system-out><![CDATA[--- query 01 (count)
+SELECT COUNT(*) FROM data
+result : 1000000
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

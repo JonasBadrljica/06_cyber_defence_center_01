@@ -1,0 +1,18 @@
+
+q
+java:S1192f"[Define a constant instead of duplicating this literal "SELECT COUNT(*) FROM data " 3 times.(À‘ıë
+k
+java:S1192»"TDefine a constant instead of duplicating this literal "GROUP BY attackType" 3 times.(ßë
+0
+java:S1220""Move this file to a named package.
+b
+java:S2095R"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ
+c
+java:S2095à"GUse try-with-resources or close this "Statement" in a "finally" clause.(é°Áµşÿÿÿÿ
+?
+java:S2115'")Add password protection to this database.(©Œöâ
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+S	java:S1063"9Replace this use of System.out or System.err by a logger.(©üâüûÿÿÿÿ
+S	java:S106J"9Replace this use of System.out or System.err by a logger.(°‘ÖÛüÿÿÿÿ
+S	java:S106X"9Replace this use of System.out or System.err by a logger.(°‘ÖÛüÿÿÿÿ
+T	java:S106å"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
