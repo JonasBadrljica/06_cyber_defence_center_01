@@ -92,12 +92,31 @@ public class Application implements IApplication {
 
     public void executeQuery04() {
         System.out.println("--- executeQuery04 ---");
-        System.out.println();
+        
+        List<String> attackTypes = Arrays.asList("b", "c", "g");
+
+        long result = recordList.stream()
+                .filter(f -> f.getSeverity().equals("critical")
+                        && !attackTypes.contains(f.getAttackType())
+                        && f.getSource() > 2
+                        && f.getShift() <= 2)
+                .count();
+        System.out.println("result : " + result);
     }
 
     public void executeQuery05() {
         System.out.println("--- executeQuery05 ---");
-        System.out.println();
+        
+        List<String> severity = Arrays.asList("major", "critical");
+        List<String> attackTypes = Arrays.asList("b", "c");
+
+        long result = recordList.stream()
+                .filter(f -> severity.contains(f.getSeverity())
+                        && attackTypes.contains(f.getAttackType())
+                        && f.getSource() > 2
+                        && f.getShift() <= 2)
+                .mapToLong(Record::getDowntimeInMinutes).sum();
+        System.out.println("result : " + result);
     }
 
     public void executeQuery06() {
